@@ -70,18 +70,17 @@ class Today:
 
     def update_results(self, start_time, recent_debt_won_sec, recent_debt_percent_sec, important_debt_data):
         # 페이지 설정
-        st.header("실시간 대한민국 국가부채", divider='red')
-        debt_won_placeholder = st.empty()
-        st.header("실시간 GDP 대비 국가부채", divider='red')
+        st.header("실시간 GDP 대비 국가채무", divider='red')
         debt_percent_placeholder = st.empty()
-
+        st.header("실시간 대한민국 국가채무", divider='red')
+        debt_won_placeholder = st.empty()
+        st.image('tab3_1.jpg', caption='2021년 당시 정부 전망 국가 채무')
 
         while True:
-            formatted_won_result = self.debt_realtime_clock(start_time, recent_debt_won_sec, important_debt_data)
             debt_percent_result = self.debt_realtime_percent(start_time, recent_debt_percent_sec, important_debt_data)
+            formatted_won_result = self.debt_realtime_clock(start_time, recent_debt_won_sec, important_debt_data)
 
+            debt_percent_placeholder.subheader(f"현재 GDP 대비 국가 채무는 {debt_percent_result:.2f}%입니다.")
             debt_won_placeholder.subheader(f"현재 국가채무 총계는: {formatted_won_result}입니다.")
-            debt_percent_placeholder.subheader(f"현재 GDP 대비 국가 부채는 {debt_percent_result:.2f}%입니다.")
 
-            time.sleep(30)  # 30초마다 결과를 업데이트
-            pass
+            time.sleep(3)  # 3초마다 결과를 업데이트
